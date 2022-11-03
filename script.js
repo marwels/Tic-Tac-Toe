@@ -14,20 +14,21 @@ const startGame_module = (function () {
 
     function showChoiceDialog() {
         const gameContainer = document.getElementById("gameContainer");
+        gameContainer.replaceChildren();
+
 
         let buttonO = document.createElement("button");
-        buttonO.classList.add(buttonO);
-        buttonO.textContent = "O";
+        buttonO.classList.add("buttonO");
+        buttonO.textContent = "Play as O";
         buttonO.addEventListener("click", () => onPlayAs(1))
 
         let buttonX = document.createElement("button");
-        buttonX.classList.add(buttonX);
-        buttonO.textContent = "X";
-        buttonO.addEventListener("click", () => onPlayAs(2))
+        buttonX.classList.add("buttonX");
+        buttonX.textContent = "Play as X";
+        buttonX.addEventListener("click", () => onPlayAs(2))
 
-        gameContainer.replaceChildren();
-        replaceChildren.appendChild(buttonO);
-        replaceChildren.appendChild(buttonX);
+        gameContainer.appendChild(buttonO);
+        gameContainer.appendChild(buttonX);
     };
 
     let resultClb;
@@ -58,20 +59,51 @@ const gameboard_module = (function () {
         player = playerChoiceXOrO;
     }
 
-    function showGameBoard() {
+    function showGameBoard(onRestart) {
+        const gameContainer = document.getElementById("gameContainer");
+        gameContainer.replaceChildren();
+        let restartButton = document.createElement("button");
+        restartButton.classList.add("restart");
+        restartButton.textContent = "Restart";
+        restartButton.addEventListener("click", onRestart);
+        gameContainer.appendChild(restartButton);
+
+        let board_container = document.createElement("div");
+        board_container.classList.add("board_container");
+        gameContainer.appendChild(board_container);
+
         for (let i = 0; i < 9; i++) {
-            let container = document.getElementById("board_container");
             let board_element = document.createElement("div");
             board_element.classList.add("board_element");
-            board_element.classList.add("board_element");
             board_element.dataset['index'] = i;
-            board_element.innerText = board[i];
+            board_element.innerText = board[i] || "";
             board_element.addEventListener("click", onBoardClick);
-            container.appendChild(board_element);
+            console.log(board_element);
+            board_container.appendChild(board_element);
         }
     }
 
-    function onBoardClick() {
+    function onBoardClick(div) {
+        // let clickedDIV = div.target.dataset['index'];
+        // console.log(clickedDIV);
+        let clickedDIV = div.target;
+
+        const divText = clickedDIV.innerText || "";
+        console.log(divText);
+
+        if (divText) {
+            alert("Choose an empty field!");
+        } else {
+            if (player === 1) {
+                clickedDIV.innerText = "o";
+            }
+            else {
+                clickedDIV.innerText = "x";
+            }
+
+        }
+
+
         // check who the player is, based on `player` and change board state
     };
 
@@ -82,12 +114,18 @@ const gameboard_module = (function () {
 })();
 
 (function () {
-    startGame_module.choosePlayer((xoro) => {
-        console.log(`Playing as ${xoro}`);
-        gameboard_module.setPlayerPlaysAs(xoro);
-        gameboard_module.showGameBoard();
-        // start game as xoro based on xoro
-    });
+    function startNewGame() {
+        startGame_module.choosePlayer((xoro) => {
+            console.log(`Playing as ${xoro}`);
+            gameboard_module.setPlayerPlaysAs(xoro);
+            gameboard_module.showGameBoard(startNewGame);
+            // start game as xoro based on xoro
+        });
+    }
+
+    startNewGame();
 })();
 
 // onBoardClick dopisac funk
+
+//wyeksportowac stale z modulu, zeby nie uzywac 1 i 2 jako o i x

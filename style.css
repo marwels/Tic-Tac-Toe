@@ -1,26 +1,69 @@
+body {
+    background-color: #e8f9fd33;
+}
+
+h1 {
+text-align: center;
+color: #FF1E00;
+}
+
 .board_container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 60vw;
+    margin: auto;
+    gap: 2vw
 }
 
 .board_element {
-    border: 2px solid;
     aspect-ratio: 1/1;
+    background-color: #59CE8F;
 }
 
-div[index="0"], div[index="1"], div[index="2"] {
-    border-top: 0;
+div[data-index="0"] {
+    grid-column: 1 / 2;
+      grid-row: 1 / 2;
 }
 
-div[index="0"], div[index="3"], div[index="6"] {
-border-left: 0;
+div[data-index="1"] {
+    grid-column: 2 / 3;
+      grid-row: 1 / 2;
 }
 
-div[index="2"], div[index="5"], div[index="8"] {
-border-right: 0;
+div[data-index="2"] {
+    grid-column: 3 / 4;
+      grid-row: 1 / 2;
 }
 
-div[index="6"], div[index="7"], div[index="8"] {
-border-bottom: 0;
+div[data-index="3"] {
+    grid-column: 1 / 2;
+      grid-row: 2 / 3;
 }
+
+div[data-index="4"] {
+    grid-column: 2 / 3;
+      grid-row: 2 / 3;
+}
+
+div[data-index="5"] {
+    grid-column: 3 / 4;
+      grid-row: 2 / 3;
+}
+
+div[data-index="6"] {
+    grid-column: 1 / 2;
+      grid-row: 3 / 4;
+}
+
+div[data-index="7"] {
+    grid-column: 2 / 3;
+      grid-row: 3 / 4;
+}
+
+div[data-index="8"] {
+    grid-column: 3 / 4;
+      grid-row: 3 / 4;
+}
+
+
