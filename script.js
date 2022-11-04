@@ -1,6 +1,6 @@
-// 0 empty cell 
+
 // 1 x 
-// 2 o
+// 0 o
 
 
 // board indexes
@@ -16,16 +16,20 @@ const startGame_module = (function () {
         const gameContainer = document.getElementById("gameContainer");
         gameContainer.replaceChildren();
 
+        let information = document.createElement("p");
+        information.innerText = "Choose O or X for the first player";
+        gameContainer.appendChild(information);
+
 
         let buttonO = document.createElement("button");
         buttonO.classList.add("buttonO");
         buttonO.textContent = "Play as O";
-        buttonO.addEventListener("click", () => onPlayAs(1))
+        buttonO.addEventListener("click", () => onPlayAs(0))
 
         let buttonX = document.createElement("button");
         buttonX.classList.add("buttonX");
         buttonX.textContent = "Play as X";
-        buttonX.addEventListener("click", () => onPlayAs(2))
+        buttonX.addEventListener("click", () => onPlayAs(1))
 
         gameContainer.appendChild(buttonO);
         gameContainer.appendChild(buttonX);
@@ -34,10 +38,10 @@ const startGame_module = (function () {
     let resultClb;
 
     function onPlayAs(choice) {
-        if (choice === 1) {
+        if (choice === 0) {
             resultClb(choice);
         }
-        else if (choice === 2) {
+        else if (choice === 1) {
             resultClb(choice);
         }
         else { console.log("sth wrong with starting game") }
@@ -60,6 +64,7 @@ const gameboard_module = (function () {
     }
 
     function showGameBoard(onRestart) {
+        board = [];
         const gameContainer = document.getElementById("gameContainer");
         gameContainer.replaceChildren();
         let restartButton = document.createElement("button");
@@ -88,23 +93,33 @@ const gameboard_module = (function () {
         // console.log(clickedDIV);
         let clickedDIV = div.target;
 
+        function checkIfSBwon() {
+
+        }
+
+
+
         const divText = clickedDIV.innerText || "";
         console.log(divText);
 
         if (divText) {
             alert("Choose an empty field!");
         } else {
-            if (player === 1) {
+            if (player === 0) {
                 clickedDIV.innerText = "o";
+                player = 1;
+                board[div.target.dataset['index']] = 0;
+                console.log(board);
             }
             else {
                 clickedDIV.innerText = "x";
+                player = 0;
+                board[div.target.dataset['index']] = 1;
+                console.log(board);
             }
-
         }
 
 
-        // check who the player is, based on `player` and change board state
     };
 
     return {
