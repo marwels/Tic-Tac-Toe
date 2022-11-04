@@ -94,7 +94,30 @@ const gameboard_module = (function () {
         let clickedDIV = div.target;
 
         function checkIfSBwon() {
-
+            if ((board[0] + board[1] + board[2] === 0) ||
+                (board[3] + board[4] + board[5] === 0) ||
+                (board[6] + board[7] + board[8] === 0) ||
+                (board[0] + board[3] + board[6] === 0) ||
+                (board[1] + board[4] + board[7] === 0) ||
+                (board[2] + board[5] + board[8] === 0) ||
+                (board[0] + board[4] + board[8] === 0) ||
+                (board[2] + board[4] + board[6] === 0)) {
+                allert("O WON!");
+            } else if (
+                (board[0] + board[1] + board[2] === 3) ||
+                (board[3] + board[4] + board[5] === 3) ||
+                (board[6] + board[7] + board[8] === 3) ||
+                (board[0] + board[3] + board[6] === 3) ||
+                (board[1] + board[4] + board[7] === 3) ||
+                (board[2] + board[5] + board[8] === 3) ||
+                (board[0] + board[4] + board[8] === 3) ||
+                (board[2] + board[4] + board[6] === 3)) {
+                allert("X WON!");
+            } else if (!(board.includes(undefined))) {
+                allert("IT'S A TIE!");
+            } else {
+                return;
+            }
         }
 
 
@@ -110,12 +133,14 @@ const gameboard_module = (function () {
                 player = 1;
                 board[div.target.dataset['index']] = 0;
                 console.log(board);
+                checkIfSBwon();
             }
             else {
                 clickedDIV.innerText = "x";
                 player = 0;
                 board[div.target.dataset['index']] = 1;
                 console.log(board);
+                checkIfSBwon();
             }
         }
 
