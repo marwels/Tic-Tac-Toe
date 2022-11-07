@@ -92,29 +92,53 @@ const gameboard_module = (function () {
         // let clickedDIV = div.target.dataset['index'];
         // console.log(clickedDIV);
         let clickedDIV = div.target;
+        let gameContainer = document.getElementById("gameContainer");
 
         function checkIfSBwon() {
-            if ((board[0] + board[1] + board[2] === 0) ||
-                (board[3] + board[4] + board[5] === 0) ||
-                (board[6] + board[7] + board[8] === 0) ||
-                (board[0] + board[3] + board[6] === 0) ||
-                (board[1] + board[4] + board[7] === 0) ||
-                (board[2] + board[5] + board[8] === 0) ||
-                (board[0] + board[4] + board[8] === 0) ||
-                (board[2] + board[4] + board[6] === 0)) {
-                allert("O WON!");
-            } else if (
-                (board[0] + board[1] + board[2] === 3) ||
-                (board[3] + board[4] + board[5] === 3) ||
-                (board[6] + board[7] + board[8] === 3) ||
-                (board[0] + board[3] + board[6] === 3) ||
-                (board[1] + board[4] + board[7] === 3) ||
-                (board[2] + board[5] + board[8] === 3) ||
-                (board[0] + board[4] + board[8] === 3) ||
-                (board[2] + board[4] + board[6] === 3)) {
-                allert("X WON!");
-            } else if (!(board.includes(undefined))) {
-                allert("IT'S A TIE!");
+            console.log(board);
+            console.log(board[0] * board[1] * board[2]);
+            console.log(board[2] * board[5] * board[8]);
+            if (((board[0] * board[1] * board[2]) !== NaN) ||
+                ((board[3] * board[4] * board[5]) !== NaN) ||
+                ((board[6] * board[7] * board[8]) !== NaN) ||
+                ((board[0] * board[3] * board[6]) !== NaN) ||
+                ((board[1] * board[4] * board[7]) !== NaN) ||
+                ((board[2] * board[5] * board[8]) !== NaN) ||
+                ((board[0] * board[4] * board[8]) !== NaN) ||
+                ((board[2] * board[4] * board[6]) !== NaN)) {
+                if ((board[0] + board[1] + board[2] === 0) ||
+                    (board[3] + board[4] + board[5] === 0) ||
+                    (board[6] + board[7] + board[8] === 0) ||
+                    (board[0] + board[3] + board[6] === 0) ||
+                    (board[1] + board[4] + board[7] === 0) ||
+                    (board[2] + board[5] + board[8] === 0) ||
+                    (board[0] + board[4] + board[8] === 0) ||
+                    (board[2] + board[4] + board[6] === 0)) {
+                    let alertO = document.createElement("div");
+                    alertO.classList.add("alert");
+                    alertO.innerText = "O WON!";
+                    gameContainer.appendChild(alertO);
+                } else if (
+                    (board[0] + board[1] + board[2] === 3) ||
+                    (board[3] + board[4] + board[5] === 3) ||
+                    (board[6] + board[7] + board[8] === 3) ||
+                    (board[0] + board[3] + board[6] === 3) ||
+                    (board[1] + board[4] + board[7] === 3) ||
+                    (board[2] + board[5] + board[8] === 3) ||
+                    (board[0] + board[4] + board[8] === 3) ||
+                    (board[2] + board[4] + board[6] === 3)) {
+                    let alertX = document.createElement("div");
+                    alertX.classList.add("alert");
+                    alertX.innerText = "X WON!";
+                    gameContainer.appendChild(alertX);
+                } else if (!(board.includes(undefined))) {
+                    let alertTIE = document.createElement("div");
+                    alertTIE.classList.add("alert");
+                    alertTIE.innerText = "IT'S A TIE!";
+                    gameContainer.appendChild(alertTIE);
+                } else {
+                    return;
+                }
             } else {
                 return;
             }

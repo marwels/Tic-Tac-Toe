@@ -1,10 +1,25 @@
+  @font-face {
+    font-family: Reey;
+    src: url(./Reey-Regular.otf);
+}
+@font-face {
+    font-family: Hattori;
+    src: url(./Hattori_Hanzo.otf);
+}
+
+* {
+  font-family: Hattori;
+}
+
 body {
     background-color: #e8f9fd33;
 }
 
 h1 {
+font-family: Reey;
 text-align: center;
 color: #FF1E00;
+font-size: 4rem;
 }
 
 .board_container {
@@ -13,12 +28,15 @@ color: #FF1E00;
     grid-template-rows: repeat(3, 1fr);
     width: 60vw;
     margin: auto;
-    gap: 2vw
+    gap: 2vw;
 }
 
 .board_element {
     aspect-ratio: 1/1;
     background-color: #59CE8F;
+    font-family: Reey;
+    text-align: center;
+    font-size: 6rem;
 }
 
 div[data-index="0"] {
