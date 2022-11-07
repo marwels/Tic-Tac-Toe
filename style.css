@@ -12,13 +12,13 @@
 }
 
 body {
-    background-color: #e8f9fd33;
+    background-color: #FAF5E4;
 }
 
 h1 {
 font-family: Reey;
 text-align: center;
-color: #FF1E00;
+color: #125B50;
 font-size: 4rem;
 }
 
@@ -26,17 +26,17 @@ font-size: 4rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    width: 60vw;
+    max-width: 35vw;
     margin: auto;
     gap: 2vw;
 }
 
 .board_element {
     aspect-ratio: 1/1;
-    background-color: #59CE8F;
+    background-color: #F8B400;
     font-family: Reey;
     text-align: center;
-    font-size: 6rem;
+    font-size: 5rem;
 }
 
 div[data-index="0"] {
@@ -85,3 +85,44 @@ div[data-index="8"] {
 }
 
 
+button {
+font-size: 2rem;
+padding: 1rem;
+border-radius: 30px;
+background-color: #FF6363;
+border-color: #FF6363;
+margin: 2rem 1.5rem;
+
+}
+
+div.restart {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+p.information {
+  font-size: 2rem;
+  margin-top: 6rem;
+}
+
+div.divChoosePanel {
+  margin: auto;
+  width:fit-content;
+}
+
+.buttonO, .buttonX {
+  margin: 1rem 1.5rem;
+}
+
+.alert {
+
+  position: absolute;
+  top: 50vh;
+  width: 100%;
+  z-index: 5;
+  font-size: 4rem;
+  text-align: center;
+  background-color: #125B50;
+  color: #FAF5E4;
+}
