@@ -98,14 +98,14 @@ const gameboard_module = (function () {
             console.log(board);
             console.log(board[0] * board[1] * board[2]);
             console.log(board[2] * board[5] * board[8]);
-            if (((board[0] * board[1] * board[2]) !== NaN) ||
-                ((board[3] * board[4] * board[5]) !== NaN) ||
-                ((board[6] * board[7] * board[8]) !== NaN) ||
-                ((board[0] * board[3] * board[6]) !== NaN) ||
-                ((board[1] * board[4] * board[7]) !== NaN) ||
-                ((board[2] * board[5] * board[8]) !== NaN) ||
-                ((board[0] * board[4] * board[8]) !== NaN) ||
-                ((board[2] * board[4] * board[6]) !== NaN)) {
+            if (!(Number.isNaN(board[0] * board[1] * board[2])) ||
+                !(Number.isNaN(board[3] * board[4] * board[5])) ||
+                !(Number.isNaN(board[6] * board[7] * board[8])) ||
+                !(Number.isNaN(board[0] * board[3] * board[6])) ||
+                !(Number.isNaN(board[1] * board[4] * board[7])) ||
+                !(Number.isNaN(board[2] * board[5] * board[8])) ||
+                !(Number.isNaN(board[0] * board[4] * board[8])) ||
+                !(Number.isNaN(board[2] * board[4] * board[6]))) {
                 if ((board[0] + board[1] + board[2] === 0) ||
                     (board[3] + board[4] + board[5] === 0) ||
                     (board[6] + board[7] + board[8] === 0) ||
