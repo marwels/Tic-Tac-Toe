@@ -97,7 +97,9 @@ margin: 2rem 1.5rem;
 
 div.restart {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
 }
 
 
@@ -116,12 +118,18 @@ div.divChoosePanel {
 }
 
 .alert {
-
   position: absolute;
   top: 50vh;
   width: 100%;
   z-index: 5;
   font-size: 4rem;
+  text-align: center;
+  background-color: #125B50;
+  color: #FAF5E4;
+}
+
+.whoPlays {
+  font-size: 2rem;
   text-align: center;
   background-color: #125B50;
   color: #FAF5E4;

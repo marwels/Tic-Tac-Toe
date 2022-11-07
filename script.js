@@ -43,13 +43,24 @@ const startGame_module = (function () {
     };
 
     let resultClb;
+    // let gameContainer = document.getElementById("gameContainer");
+    let whoPlays = document.createElement("div");
+    whoPlays.classList.add("whoPlays");
+
 
     function onPlayAs(choice) {
         if (choice === 0) {
             resultClb(choice);
+            let restartDIV = document.querySelector("div.restart");
+            whoPlays.innerText = "Now plays O.";
+            restartDIV.appendChild(whoPlays);
         }
         else if (choice === 1) {
             resultClb(choice);
+            let restartDIV = document.querySelector("div.restart");
+            whoPlays.innerText = "Now plays X.";
+            restartDIV.appendChild(whoPlays);
+
         }
         else { console.log("sth wrong with starting game") }
     }
@@ -172,6 +183,7 @@ const gameboard_module = (function () {
             if (player === 0) {
                 clickedDIV.innerText = "o";
                 player = 1;
+                document.querySelector("div.whoPlays").innerText = "Now plays X.";
                 board[div.target.dataset['index']] = 0;
                 console.log(board);
                 checkIfSBwon();
@@ -179,6 +191,7 @@ const gameboard_module = (function () {
             else {
                 clickedDIV.innerText = "x";
                 player = 0;
+                document.querySelector("div.whoPlays").innerText = "Now plays O.";
                 board[div.target.dataset['index']] = 1;
                 console.log(board);
                 checkIfSBwon();
