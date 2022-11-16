@@ -39,7 +39,7 @@ font-size: 4rem;
     display:flex;
     justify-content: center;
     align-items: center;
-    font-size: 5.5rem;
+    font-size: 5rem;
     cursor: pointer;
 }
 
@@ -126,15 +126,27 @@ div.divChoosePanel {
 }
 
 .alert {
-  position: absolute;
-  top: 50vh;
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 5;
   font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   text-align: center;
-  background-color: #125B50;
+  flex-direction: column;
+  background-color: rgb(18, 91, 80, 0.9);
   color: #FAF5E4;
 }
+
+.alert > button {
+width: fit-content;
+align-self: center;
+}
+
 
 .whoPlays {
   font-size: 2rem;

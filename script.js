@@ -1,4 +1,3 @@
-
 // 1 x 
 // 0 o
 
@@ -46,9 +45,9 @@ const startGame_module = (function () {
 
 
     function onPlayAs(choice) {
+        let restartDIV = document.querySelector("div.restart");
         if (choice === 0) {
             resultClb(choice);
-            let restartDIV = document.querySelector("div.restart");
             whoPlays.innerText = "Now plays O.";
             restartDIV.appendChild(whoPlays);
         }
@@ -66,6 +65,7 @@ const startGame_module = (function () {
         choosePlayer: (clb) => {
             resultClb = clb;
             showChoiceDialog();
+            onPlayAs(choice);
         }
     }
 })();
@@ -73,12 +73,14 @@ const startGame_module = (function () {
 const gameboard_module = (function () {
     let board = [-10, -10, -10, -10, -10, -10, -10, -10, -10];
     let player;
+    let onRestart;
 
     function setPlayerPlaysAs(playerChoiceXOrO) {
         player = playerChoiceXOrO;
     }
 
-    function showGameBoard(onRestart) {
+    function showGameBoard(onRestartClb) {
+        onRestart = onRestartClb
         board = [-10, -10, -10, -10, -10, -10, -10, -10, -10];
         const gameContainer = document.getElementById("gameContainer");
         gameContainer.replaceChildren();
@@ -121,6 +123,12 @@ const gameboard_module = (function () {
         function checkIfSBwon() {
             console.log(board);
 
+            let restartButton = document.createElement("button");
+            restartButton.classList.add("restart");
+            restartButton.textContent = "Restart";
+            restartButton.addEventListener("click", onRestart);
+
+
             if ((board[0] + board[1] + board[2] >= 0) ||
                 (board[3] + board[4] + board[5] >= 0) ||
                 (board[6] + board[7] + board[8] >= 0) ||
@@ -140,6 +148,7 @@ const gameboard_module = (function () {
                     let alertO = document.createElement("div");
                     alertO.classList.add("alert");
                     alertO.innerText = "O WON!";
+                    alertO.appendChild(restartButton);
                     gameContainer.appendChild(alertO);
                     return;
                 } else if (
@@ -154,12 +163,14 @@ const gameboard_module = (function () {
                     let alertX = document.createElement("div");
                     alertX.classList.add("alert");
                     alertX.innerText = "X WON!";
+                    alertX.appendChild(restartButton);
                     gameContainer.appendChild(alertX);
                     return;
                 } else if (!(board.includes(-10))) {
                     let alertTIE = document.createElement("div");
                     alertTIE.classList.add("alert");
                     alertTIE.innerText = "IT'S A TIE!";
+                    alertTIE.appendChild(restartButton);
                     gameContainer.appendChild(alertTIE);
                 } else {
                     clickedDIV.classList.add("notAllowed");
@@ -196,8 +207,6 @@ const gameboard_module = (function () {
                 checkIfSBwon();
             }
         }
-
-
     };
 
     return {
@@ -219,6 +228,5 @@ const gameboard_module = (function () {
     startNewGame();
 })();
 
-// onBoardClick dopisac funk
 
 //wyeksportowac stale z modulu, zeby nie uzywac 1 i 2 jako o i x
