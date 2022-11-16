@@ -19,13 +19,10 @@ const startGame_module = (function () {
         let divChoosePanel = document.createElement("div");
         divChoosePanel.classList.add("divChoosePanel");
 
-
-
         let information = document.createElement("p");
         information.innerText = "Choose O or X for the first player";
         information.classList.add("information");
         divChoosePanel.appendChild(information);
-
 
         let buttonO = document.createElement("button");
         buttonO.classList.add("buttonO");
@@ -165,9 +162,11 @@ const gameboard_module = (function () {
                     alertTIE.innerText = "IT'S A TIE!";
                     gameContainer.appendChild(alertTIE);
                 } else {
+                    clickedDIV.classList.add("notAllowed");
                     return;
                 }
             } else {
+                clickedDIV.classList.add("notAllowed");
                 return;
             }
         }
